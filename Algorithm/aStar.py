@@ -6,7 +6,7 @@ sys.path.append(library_path)
 from agent import agent
 from maze import maze
 from color import COLOR
-from Library.textLabel import textLabel
+from textLabel import textLabel
 from queue import PriorityQueue
 
 def h(cell1,cell2):

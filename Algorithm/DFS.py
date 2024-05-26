@@ -5,7 +5,7 @@ sys.path.append(library_path)
 
 from agent import *
 from maze import maze
-from Library.textLabel import textLabel
+from textLabel import textLabel
 # from collections import deque
 
 
