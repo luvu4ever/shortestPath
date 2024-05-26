@@ -1,5 +1,5 @@
 from tkinter import *
-from COLOR import COLOR
+from color import COLOR
 
 class agent:
     def __init__(self,parentMaze,x=None,y=None,shape='square',goal=None,filled=False,footprints=False,color:COLOR=COLOR.blue):

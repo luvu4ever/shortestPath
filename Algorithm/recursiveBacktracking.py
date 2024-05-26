@@ -1,8 +1,11 @@
+import sys
+import os
+library_path = os.path.join(os.path.dirname(__file__), '..', 'Library')
+sys.path.append(library_path)
+
 from agent import *
-from COLOR import *
 from maze import maze
-from collections import deque
-from textLabel import textLabel
+
 
 def recursiveBacktracking(m, start=None):
     if start is None:

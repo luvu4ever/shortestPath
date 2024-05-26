@@ -1,16 +1,20 @@
-import BFS as bfs
-import DFS as dfs
-from aStar import aStar
-from dijktra import dijkstra
-from agent import agent
-from COLOR import COLOR
+import sys
+import os
+library_path = os.path.join(os.path.dirname(__file__), '.', 'Library')
+sys.path.append(library_path)
+library_path = os.path.join(os.path.dirname(__file__), '.', 'Algorithm')
+sys.path.append(library_path)
 from maze import maze
-from textLabel import textLabel
+import DFS
+import BFS
+from aStar import aStar
+from dijkstra import dijkstra
+
 import csv
 import random
 import time
 
-num_runs = 1000
+num_runs = 1
 
 results_search = []
 results_time = []
@@ -27,11 +31,11 @@ for _ in range(num_runs):
     endY = random.randint(1, col)
     m.CreateMaze(endX, endY, loopPercent=10.0)
     start_time = time.time()
-    dSearch, dfsPath, dfwdPath = dfs.DFS(m, start)
+    dSearch, dfsPath, dfwdPath = DFS.DFS(m, start)
     end_time = time.time()
     DFS_time = end_time - start_time
     start_time = time.time()
-    bSearch, bfsPath, bfwdPath = bfs.BFS(m, start)
+    bSearch, bfsPath, bfwdPath = BFS.BFS(m, start)
     end_time = time.time()
     BFS_time = end_time - start_time
     start_time = time.time()

@@ -1,6 +1,6 @@
 import random,datetime,csv,os
 from tkinter import *
-from COLOR import COLOR
+from color import COLOR
 from collections import deque
 from agent import agent
 

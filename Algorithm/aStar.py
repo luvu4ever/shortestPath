@@ -1,7 +1,12 @@
+import sys
+import os
+library_path = os.path.join(os.path.dirname(__file__), '..', 'Library')
+sys.path.append(library_path)
+
 from agent import agent
 from maze import maze
-from COLOR import COLOR
-from textLabel import textLabel
+from color import COLOR
+from Library.textLabel import textLabel
 from queue import PriorityQueue
 
 def h(cell1,cell2):
