@@ -1,2 +1,2 @@
-
-    while cell!=(m.rows,m.cols):
+    # a=agent(m,x,y,color=COLOR.cyan,filled=True,footprints=True)
+    # m.tracePath({a:path})

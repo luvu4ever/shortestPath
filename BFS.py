@@ -1,10 +1,10 @@
-from agent import agent
-from COLOR import COLOR
+from agent import *
+from COLOR import *
 from maze import maze
 from textLabel import textLabel
 from collections import deque
 
-def BFS(m,start=None):
+def BFS(m, start=None):
     if start is None:
         start=(m.rows,m.cols)
     frontier = deque()
@@ -12,7 +12,6 @@ def BFS(m,start=None):
     bfsPath = {}
     explored = [start]
     bSearch=[]
-
     while len(frontier)>0:
         currCell=frontier.popleft()
         if currCell==m._goal:
@@ -28,38 +27,26 @@ def BFS(m,start=None):
                 explored.append(child)
                 bfsPath[child] = currCell
                 bSearch.append(child)
-    # print(f'{bfsPath}')
     fwdPath={}
     cell=m._goal
-    while cell!=(m.rows,m.cols):
+    # print("BFS Path: ", m._goal)
+    while cell!= start:
         fwdPath[bfsPath[cell]]=cell
         cell=bfsPath[cell]
+        # print(cell)
     return bSearch,bfsPath,fwdPath
 
 if __name__=='__main__':
-    # m=maze(5,5)
-    # m.CreateMaze(loadMaze='bfs.csv')
-    # bSearch,bfsPath,fwdPath=BFS(m)
-    # a=agent(m,footprints=True,color=COLOR.green,shape='square')
-    # b=agent(m,footprints=True,color=COLOR.yellow,shape='square',filled=False)
-    # c=agent(m,1,1,footprints=True,color=COLOR.cyan,shape='square',filled=True,goal=(m.rows,m.cols))
-    # m.tracePath({a:bSearch},delay=500)
-    # m.tracePath({c:bfsPath})
-    # m.tracePath({b:fwdPath})
+    m=maze(10,10)
+    m.CreateMaze(2, 4, loopPercent=1.0)
 
-    # m.run()
+    bSearch,bfsPath,fwdPath = BFS(m, (5,1))
+    a=agent(m,5,1,goal=(2,4),footprints=True,color=COLOR.yellow,shape='square',filled=True)
+    b=agent(m,2,4,goal=(5,1),footprints=True,filled=True)
+    c=agent(m,5,1,footprints=True,color=COLOR.yellow)
 
-
-    m=maze(12,10)
-    # m.CreateMaze(5,4,loopPercent=100)
-    m.CreateMaze(loopPercent=10)
-    bSearch,bfsPath,fwdPath=BFS(m)
-    a=agent(m,footprints=True,color=COLOR.yellow,shape='square',filled=True)
-    b=agent(m,footprints=True,color=COLOR.red,shape='square',filled=False)
-    # c=agent(m,5,4,footprints=True,color=COLOR.cyan,shape='square',filled=True,goal=(m.rows,m.cols))
-    c=agent(m,1,1,footprints=True,color=COLOR.cyan,shape='square',filled=True,goal=(m.rows,m.cols))
     m.tracePath({a:bSearch},delay=100)
-    m.tracePath({c:bfsPath},delay=100)
-    m.tracePath({b:fwdPath},delay=100)
+    m.tracePath({b:bfsPath},delay=100)
+    m.tracePath({c:fwdPath},delay=100)
 
     m.run()

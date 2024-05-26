@@ -40,8 +40,9 @@ def DFS(m,start=None):
         cell=dfsPath[cell]
     return dSeacrh,dfsPath,fwdPath
 
+
 if __name__=='__main__':
-    m=maze(10,10)
+    m=maze(50,50)
     m.CreateMaze(2,4, loopPercent=1.0)
 
     dSeacrh,dfsPath,fwdPath=DFS(m,(5,1)) # (5,1) is Start Cell, Change that to any other valid cell
@@ -51,7 +52,7 @@ if __name__=='__main__':
     b=agent(m,2,4,goal=(5,1),footprints=True,filled=True)
     c=agent(m,5,1,footprints=True,color=COLOR.yellow)
     print(dSeacrh)
-    m.tracePath({a:dSeacrh},showMarked=True)
+    m.tracePath({a:dSeacrh},showMarked=True, delay = 100)
     m.tracePath({b:dfsPath})
     m.tracePath({c:fwdPath})
     l3 = textLabel(m, 'DFS Search Length', len(fwdPath) + 1)

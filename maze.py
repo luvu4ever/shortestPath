@@ -68,9 +68,6 @@ class maze:
                         n.append((newX, newY))
             return n
         def removeWallinBetween(cell1,cell2):
-            '''
-            To remove wall in between two cells
-            '''
             if cell1[0]==cell2[0]:
                 if cell1[1]==cell2[1]+1:
                     self.maze_map[cell1][0]=1
@@ -257,9 +254,6 @@ class maze:
                 f.truncate()
 
     def _drawMaze(self,theme):
-        '''
-        Creation of Tkinter window and maze lines
-        '''
         
         self._LabWidth=26 # Space from the top for Labels
         self._win=Tk()
@@ -322,11 +316,7 @@ class maze:
 
     _tracePathList=[]
     def _tracePathSingle(self,a,p,kill,showMarked,delay):
-        
         def killAgent(a):
-            '''
-            if the agent should be killed after it reaches the Goal or completes the path
-            '''
             for i in range(len(a._body)):
                 self._canvas.delete(a._body[i])
             self._canvas.delete(a._head) 
@@ -351,43 +341,8 @@ class maze:
         if(type(p)==dict):
             if(len(p)==0):
                 del maze._tracePathList[0][0][a]
-                return
-            if a.shape=='arrow':
-                old=(a.x,a.y)
-                new=p[(a.x,a.y)]
-                o=a._orient
-                
-                if old!=new:
-                    if old[0]==new[0]:
-                        if old[1]>new[1]:
-                            mov=3#0 #3
-                        else:
-                            mov=1#3 #1
-                    else:
-                        if old[0]>new[0]:
-                            mov=0#1 #0
-
-                        else:
-                            mov=2#2 #2
-                    if mov-o==2:
-                        a._RCW()
-
-                    if mov-o==-2:
-                        a._RCW()
-                    if mov-o==1:
-                        a._RCW()
-                    if mov-o==-1:
-                        a._RCCW()
-                    if mov-o==3:
-                        a._RCCW()
-                    if mov-o==-3:
-                        a._RCW()
-                    if mov==o:
-                        a.x,a.y=p[(a.x,a.y)]
-                else:
-                    del p[(a.x,a.y)]
-            else:    
-                a.x,a.y=p[(a.x,a.y)]
+                return 
+            a.x,a.y=p[(a.x,a.y)]
         # If path is provided as String
         if (type(p)==str):
             if(len(p)==0):
@@ -410,43 +365,7 @@ class maze:
                         self.tracePath(maze._tracePathList[0][0],kill=maze._tracePathList[0][1],delay=maze._tracePathList[0][2])
                 if kill:                    
                     self._win.after(300, killAgent,a)  
-                return
-            # if a.shape=='arrow':
-            #     old=(a.x,a.y)
-            #     new=p[0]
-            #     o=a._orient
-                
-            #     if old!=new:
-            #         if old[0]==new[0]:
-            #             if old[1]>new[1]:
-            #                 mov=3#0 #3
-            #             else:
-            #                 mov=1#3 #1
-            #         else:
-            #             if old[0]>new[0]:
-            #                 mov=0#1 #0
-
-            #             else:
-            #                 mov=2#2 #2
-            #         if mov-o==2:
-            #             a._RCW()
-
-            #         elif mov-o==-2:
-            #             a._RCW()
-            #         elif mov-o==1:
-            #             a._RCW()
-            #         elif mov-o==-1:
-            #             a._RCCW()
-            #         elif mov-o==3:
-            #             a._RCCW()
-            #         elif mov-o==-3:
-            #             a._RCW()
-            #         elif mov==o:
-            #             a.x,a.y=p[0]
-            #             del p[0]
-            #     else:
-            #         del p[0]
-            # else:    
+                return  
             a.x,a.y=p[0]
             del p[0]
 
